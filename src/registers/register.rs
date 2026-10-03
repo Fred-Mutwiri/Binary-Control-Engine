@@ -15,6 +15,10 @@ impl Register {
     pub fn write( &mut self, value: u8) {
         self.value = value;
     }
+
+    pub fn clear( &mut self ) {
+        self.value = 0;
+    }
 }
 
 
@@ -47,5 +51,14 @@ mod tests {
 
         register.write(255);
         assert_eq!(register.read(), 255);
+    }
+
+    #[test]
+    fn clears_value() {
+        let mut register = Register::new(30);
+
+        register.clear();
+
+        assert_eq!(register.read(), 0);
     }
 }
